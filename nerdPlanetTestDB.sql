@@ -67,7 +67,15 @@ create table Giochi
     IDPiattaforma int,
     IDGenere int,
     IDSviluppatore int,
-    IDEditor int
+    IDEditor int,
+    foreign key (IDPiattaforma) references Piattaforme(IDPiattaforme)
+    on update cascade on delete set null,
+    foreign key (IDGenere) references Generi(IDGenere)
+    on update cascade on delete set null,
+    foreign key (IDSviluppatore) references Sviluppatori(IDSviluppatori)
+    on update cascade on delete set null,
+    foreign key (IDEditor) references Editor(IDEditor)
+    on update cascade on delete set null
 );
 insert into Giochi
 (
