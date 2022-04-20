@@ -7,7 +7,7 @@ use nerdPlanet;
 drop table if exists Piattaforme;
 create table Piattaforme
 (
-	IDPiattaforma int,
+	IDPiattaforma int primary key auto_increment,
 	piattaforma varchar(50)
 );
 insert into Piattaforme (piattaforma) values (?);
@@ -17,7 +17,7 @@ insert into Piattaforme (piattaforma) values (?);
 drop table if exists Generi;
 create table Generi
 (
-	IDGenere int,
+	IDGenere int primary key auto_increment,
     genere varchar(50)
 );
 insert into Generi (genere) values (?);
@@ -27,7 +27,7 @@ insert into Generi (genere) values (?);
 drop table if exists Sviluppatori;
 create table Sviluppatori
 (
-	IDSviluppatore int,
+	IDSviluppatore int primary key auto_increment,
     nomeSviluppatore varchar(50)
 );
 insert into Sviluppatori (nomeSviluppatore) values (?);
@@ -36,7 +36,7 @@ insert into Sviluppatori (nomeSviluppatore) values (?);
 drop table if exists Editor;
 create table Editor
 (
-	IDEditor int,
+	IDEditor int primary key auto_increment,
     nomeEditor varchar(50)
 );
 insert into Editor (nomeEditor) values (?);
@@ -45,7 +45,7 @@ insert into Editor (nomeEditor) values (?);
 drop table if exists Utenti;
 create table Utenti
 (
-	IDUtente int,
+	IDUtente int primary key auto_increment,
     userName varchar(20),
     emailAddress varchar(50),
     pword varchar(32),
@@ -59,7 +59,7 @@ insert into Utenti (userName, emailAddress, pword, bio) values (?,?,?,?);
 drop table if exists Giochi;
 create table Giochi
 (
-	IDGioco int,
+	IDGioco int primary key auto_increment,
 	titolo varchar (100),
     dataUscita date,
     serie varchar(100),
@@ -88,6 +88,10 @@ create table GiocoLatoUser
     IDGioco int,
     IDLista int,
     rating int,
+    foreign key (IDUtente) references Utenti(IDUtente)
+    on update cascade on delete set null,
+    foreign key (IDGioco) references Giochi(IDGioco)
+	on update cascade on delete set null,
     testoReview varchar(150),
     oreGioco double
 );
